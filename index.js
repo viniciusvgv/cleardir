@@ -1,28 +1,30 @@
 var ClearDir = function(path){
   this.path = path;
-  this.unwantedFiles = [/\.class$/, /\.DS_STORE$/, /\.sassc$/, /\.sass-cache$/, /\.rspec$/];
+  this.unwantedFiles = [/\.class$/, /\.DS_STORE$/, /\.rspec$/];
 }
 
-cleandir.prototype.clear = function(){
+ClearDir.prototype.clear = function(){
   fs.readdir(path, function(err, files) {
-      if (err) throw err;
+      if (err) return [];
 
       var found = [];
 
       files.forEach(function(file) {
-          unwantedFiles.forEach(function(exp) {
-            if (file.match(exp)) {
-              found.push(file);
-            }
-          });
-      });
-
-      found.forEach(function(file) {
-        fs.unlink(file, function (err) {
-          if (err) throw err;
-
-          console.log('deleted ' + file);
+        unwantedFiles.forEach(function(exp) {
+          if (file.match(exp)) {
+            fs.unlink(file, function (err) {
+              if (err){
+                throw err;
+              } else {
+                found.push(file);
+              }
+            });
+          }
         });
       });
+
+      return found;
   });
 }
+
+module.exports = ClearDir;

@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/viniciusvgv/cleardir/issues"
   },
+  "bin": {
+    "cleardir": "./cli.js"
+  },
   "homepage": "https://github.com/viniciusvgv/cleardir"
 }
