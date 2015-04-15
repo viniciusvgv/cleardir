@@ -7,6 +7,7 @@ var ClearDir = function(path){
 
 ClearDir.prototype.clear = function(){
   var found = [];
+  var self = this;
 
   fs.readdir(this.path, function(err, files) {
     if (err) return [];
