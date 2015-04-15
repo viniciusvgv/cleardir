@@ -6,12 +6,5 @@ var cleardir = new ClearDir(cwd);
 
 console.log("Cleaning '" + cwd + "'...")
 
-var deleted = cleardir.clear();
+cleardir.clear();
 
-if (deleted.size > 0) {
-  deleted.forEach(function (file){
-    console.log(file + " was deleted!");
-  });
-} else {
-  console.log("Nothing to delete");
-}

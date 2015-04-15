@@ -6,28 +6,25 @@ var ClearDir = function(path){
 }
 
 ClearDir.prototype.clear = function(){
-  var self = this;
   var found = [];
 
   fs.readdir(this.path, function(err, files) {
-      if (err) return [];
+    if (err) return [];
 
-      files.forEach(function(file) {
-        self.unwantedFiles.forEach(function(exp) {
-          if (file.match(exp)) {
-            fs.unlink(file, function (err) {
-              if (err){
-                throw err;
-              } else {
-                found.push(file);
-              }
-            });
-          }
-        });
+    files.forEach(function(file) {
+      self.unwantedFiles.forEach(function(exp) {
+        if (file.match(exp)) {
+          fs.unlink(file, function (err) {
+            if (err){
+              throw err;
+            } else {
+              console.log("Deleted " + file);
+            }
+          });
+        }
       });
+    });
   });
-
-  return found;
 }
 
 module.exports = ClearDir;
