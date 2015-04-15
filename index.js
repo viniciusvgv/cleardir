@@ -1,3 +1,5 @@
+var fs = require("fs")
+
 var ClearDir = function(path){
   this.path = path;
   this.unwantedFiles = [/\.class$/, /\.DS_STORE$/, /\.rspec$/];
