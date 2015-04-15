@@ -6,13 +6,13 @@ var ClearDir = function(path){
 }
 
 ClearDir.prototype.clear = function(){
-  fs.readdir(path, function(err, files) {
+  fs.readdir(this.path, function(err, files) {
       if (err) return [];
 
       var found = [];
 
       files.forEach(function(file) {
-        unwantedFiles.forEach(function(exp) {
+        this.unwantedFiles.forEach(function(exp) {
           if (file.match(exp)) {
             fs.unlink(file, function (err) {
               if (err){
