@@ -6,13 +6,14 @@ var ClearDir = function(path){
 }
 
 ClearDir.prototype.clear = function(){
+  var self = this;
+  var found = [];
+
   fs.readdir(this.path, function(err, files) {
       if (err) return [];
 
-      var found = [];
-
       files.forEach(function(file) {
-        this.unwantedFiles.forEach(function(exp) {
+        self.unwantedFiles.forEach(function(exp) {
           if (file.match(exp)) {
             fs.unlink(file, function (err) {
               if (err){
@@ -24,9 +25,9 @@ ClearDir.prototype.clear = function(){
           }
         });
       });
-
-      return found;
   });
+
+  return found;
 }
 
 module.exports = ClearDir;
