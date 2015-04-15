@@ -4,11 +4,13 @@ var ClearDir = require('cleardir');
 var cwd = process.cwd();
 var cleardir = new ClearDir(cwd);
 
-var deleted = cleardir.clear()
+console.log("Cleaning " + cwd + "...")
+
+var deleted = cleardir.clear();
 
 if (deleted.size > 0) {
   deleted.forEach(function (file){
-    console.log(file+" was deleted!");
+    console.log(file + " was deleted!");
   });
 } else {
   console.log("Nothing to delete");
